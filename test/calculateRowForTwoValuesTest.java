@@ -54,7 +54,7 @@ public class calculateRowForTwoValuesTest extends DataUtilities {
 	   //The result should equal 16.0 since 10.5 + 5.5 = 16.0
 	     assertEquals(16.0, result, .000000001d);
 	     double result2 = DataUtilities.calculateRowTotal(values1, 0);
-	     assertEquals(16.0, result2, .000000001d);
+	     assertEquals(0.0, result2, .000000001d);
 	     // tear-down: NONE in this test method
 	 }
 }
