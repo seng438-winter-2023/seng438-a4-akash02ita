@@ -139,6 +139,8 @@ public class RangeTest {
 	public void testGetLengthWithBothBoundsNegative() {
 		range = new Range(-20, -10);
 		assertEquals(10, range.getLength(), 0.000000001d);
+		assertEquals(-20, range.getLowerBound(),  0.000000001d);
+		assertEquals(-10, range.getUpperBound(),  0.000000001d);
 	}
 	
 	//testing getLength() with both bounds positive
@@ -146,6 +148,8 @@ public class RangeTest {
 	public void testGetLengthWithBothBoundsPositive() {
 		range = new Range(10, 20);
 		assertEquals(10, range.getLength(), 0.000000001d);
+		assertEquals(10, range.getLowerBound(),  0.000000001d);
+		assertEquals(20, range.getUpperBound(),  0.000000001d);
 	}
 	
 	//testing getLength() with both bounds equal
@@ -153,6 +157,8 @@ public class RangeTest {
 	public void testGetLengthWithBothBoundsEqual() {
 		range = new Range(0, 0);
 		assertEquals(0, range.getLength(), 0.000000001d);
+		assertEquals(0, range.getLowerBound(),  0.000000001d);
+		assertEquals(0, range.getUpperBound(),  0.000000001d);
 	}
 	
 	//testing getLength() with negative lower and positive upper bound
@@ -160,6 +166,8 @@ public class RangeTest {
 	public void testGetLengthWithNegativeLowerAndPositiveUpper() {
 		range = new Range(-10, 20);
 		assertEquals(30, range.getLength(), 0.000000001d);
+		assertEquals(-10, range.getLowerBound(),  0.000000001d);
+		assertEquals(20, range.getUpperBound(),  0.000000001d);
 	}
 	
 	//testing getLength() with 0 lower and positive upper bound
@@ -167,6 +175,8 @@ public class RangeTest {
 	public void testGetLengthWithZeroLowerAndPositiveUpper() {
 		range = new Range(0, 20);
 		assertEquals(20, range.getLength(), 0.000000001d);
+		assertEquals(0, range.getLowerBound(),  0.000000001d);
+		assertEquals(20, range.getUpperBound(),  0.000000001d);
 	}
 	
 	//testing getLength() with negative lower and 0 upper bound
@@ -174,6 +184,8 @@ public class RangeTest {
 	public void testGetLengthWithNegativeLowerAndZeroUpper() {
 		range = new Range(-10, 0);
 		assertEquals(10, range.getLength(), 0.000000001d);
+		assertEquals(-10, range.getLowerBound(),  0.000000001d);
+		assertEquals(0, range.getUpperBound(),  0.000000001d);
 	}
 	
 	//---------------TESTING getCentralValue()---------------
@@ -183,6 +195,8 @@ public class RangeTest {
 	public void testGetCentralValueWithNegativeLowerAndPositiveUpper() {
 		range = new Range(-10, 10);
 		assertEquals("The central value of -10 and 10 should be 0", 0, range.getCentralValue(), 0.000000001d);
+		assertEquals(-10, range.getLowerBound(),  0.000000001d);
+		assertEquals(10, range.getUpperBound(),  0.000000001d);
 	}
 	
 	//testing getCentralValue() with negative lower and upper bound
@@ -190,6 +204,8 @@ public class RangeTest {
 	public void testGetCentralValueWithBothBoundsNegative() {
 		range = new Range(-20, -10);
 		assertEquals(-15, range.getCentralValue(), 0.000000001d);
+		assertEquals(-20, range.getLowerBound(),  0.000000001d);
+		assertEquals(-10, range.getUpperBound(),  0.000000001d);
 	}
 	
 	//testing getCentralValue() with positive lower and upper bound
@@ -197,6 +213,8 @@ public class RangeTest {
 	public void testGetCentralValueWithBothBoundsPositive() {
 		range = new Range(10, 20);
 		assertEquals(15, range.getCentralValue(), 0.000000001d);
+		assertEquals(10, range.getLowerBound(),  0.000000001d);
+		assertEquals(20, range.getUpperBound(),  0.000000001d);
 	}	
 	
 	//testing getCentralValue() with 0 lower and positive upper bound
@@ -204,6 +222,8 @@ public class RangeTest {
 	public void testGetCentralValueWithZeroLowerAndPositiveUpper() {
 		range = new Range(0, 20);
 		assertEquals(10, range.getCentralValue(), 0.000000001d);
+		assertEquals(0, range.getLowerBound(),  0.000000001d);
+		assertEquals(20, range.getUpperBound(),  0.000000001d);
 	}		
 	
 	//testing getCentralValue() with 0 lower and positive upper bound
@@ -211,6 +231,8 @@ public class RangeTest {
 	public void testGetCentralValueWithNegativeLowerAndZeroUpper() {
 		range = new Range(-20, 0);
 		assertEquals(-10, range.getCentralValue(), 0.000000001d);
+		assertEquals(-20, range.getLowerBound(),  0.000000001d);
+		assertEquals(0, range.getUpperBound(),  0.000000001d);
 	}
 	
 	//---------------TESTING equals(Object)---------------
@@ -221,6 +243,8 @@ public class RangeTest {
 		range1 = new Range(0, 10);
 		int input = 0;
 		assertFalse(range1.equals(input));
+		assertEquals(0, range1.getLowerBound(),  0.000000001d);
+		assertEquals(10, range1.getUpperBound(),  0.000000001d);
 	}
 	
 	//testing equals(Object) when input = range
@@ -229,6 +253,11 @@ public class RangeTest {
 		range1 = new Range(0, 10);
 		range2 = new Range(0, 10);
 		assertTrue(range1.equals(range2));
+		assertEquals(0, range1.getLowerBound(),  0.000000001d);
+		assertEquals(10, range1.getUpperBound(),  0.000000001d);
+		assertEquals(0, range2.getLowerBound(),  0.000000001d);
+		assertEquals(10, range2.getUpperBound(),  0.000000001d);
+		
 	}
 	
 	//testing equals(Object) when input != range and input lower is equal to range lower
@@ -237,6 +266,11 @@ public class RangeTest {
 		range1 = new Range(0, 10);
 		range2 = new Range(0, 20);
 		assertFalse(range1.equals(range2));
+		assertEquals(0, range1.getLowerBound(),  0.000000001d);
+		assertEquals(10, range1.getUpperBound(),  0.000000001d);
+		assertEquals(0, range2.getLowerBound(),  0.000000001d);
+		assertEquals(20, range2.getUpperBound(),  0.000000001d);
+		
 	}
 	
 	//testing equals(Object) when input != range and input lower is inequal to range lower
@@ -245,6 +279,10 @@ public class RangeTest {
 		range1 = new Range(0, 10);
 		range2 = new Range(10, 20);
 		assertFalse(range1.equals(range2));
+		assertEquals(0, range1.getLowerBound(),  0.000000001d);
+		assertEquals(10, range1.getUpperBound(),  0.000000001d);
+		assertEquals(10, range2.getLowerBound(),  0.000000001d);
+		assertEquals(20, range2.getUpperBound(),  0.000000001d);
 	}
 	
 	//---------------TESTING combine(Range, Range)---------------
@@ -262,6 +300,8 @@ public class RangeTest {
 		range1 = new Range(-10, 0);
 		range = Range.combine(null, range1);
 		assertEquals(range, range1);
+		assertEquals(-10, range.getLowerBound(),  0.000000001d);
+		assertEquals(0, range.getUpperBound(),  0.000000001d);
 	}
 	
 	//testing combine(Range, Range) with second range null
@@ -270,6 +310,8 @@ public class RangeTest {
 		range1 = new Range(-10, 0);
 		range = Range.combine(range1, null);
 		assertEquals(range, range1);
+		assertEquals(-10, range.getLowerBound(),  0.000000001d);
+		assertEquals(0, range.getUpperBound(),  0.000000001d);
 	}
 	
 	//testing combine(Range, Range) with both ranges equal
@@ -279,6 +321,8 @@ public class RangeTest {
 		range2 = new Range(-10, 0);
 		range = Range.combine(range1, range2);
 		assertEquals(range, range1);
+		assertEquals(-10, range.getLowerBound(),  0.000000001d);
+		assertEquals(0, range.getUpperBound(),  0.000000001d);
 	}
 	
 	//testing combine(Range, Range) with both ranges not null where upper bound of first range is equal to lower bound second range
@@ -626,6 +670,124 @@ public class RangeTest {
 		range = new Range(0, 10);
 		assertFalse(range.isNaNRange());
 	}
+	
+	// ------------BEGIN new a4 test cases---------------
+	@Test
+	public void testConstructorRangeValues() {
+		range = new Range(0,10);
+		assertEquals(0, range.getLowerBound(),  0.000000001d);
+		assertEquals(10, range.getUpperBound(),  0.000000001d);
+	}
+	
+	@Test
+	public void testIntersectWhenInputContainsRange() {
+		range = new Range(2,3);
+		assertTrue(range.intersects(0, 5));
+		assertTrue(range.intersects(new Range(0,5)));
+		assertEquals(2, range.getLowerBound(),  0.000000001d);
+		assertEquals(3, range.getUpperBound(),  0.000000001d);	
+	}
+	
+	
+	/* Cover new UNCOVERED methods --> UNCOVERED CASES */
+	@Test
+	public void testCombineIgnoringNaN_null() {
+		range = new Range(Double.NaN, Double.NaN);
+		assertEquals(Double.NaN, range.getLowerBound(), 0.000000001d);
+		assertEquals(Double.NaN, range.getUpperBound(), 0.000000001d);
+		assertNull(Range.combineIgnoringNaN(null, null));
+		assertEquals(Double.NaN, range.getLowerBound(), 0.000000001d);
+		assertEquals(Double.NaN, range.getUpperBound(), 0.000000001d);
+		assertNull(Range.combineIgnoringNaN(null, range));
+		assertEquals(Double.NaN, range.getLowerBound(), 0.000000001d);
+		assertEquals(Double.NaN, range.getUpperBound(), 0.000000001d);
+		assertNull(Range.combineIgnoringNaN(range, null));
+		assertEquals(Double.NaN, range.getLowerBound(), 0.000000001d);
+		assertEquals(Double.NaN, range.getUpperBound(), 0.000000001d);
+		assertNull(Range.combineIgnoringNaN(range, range));
+		assertEquals(Double.NaN, range.getLowerBound(), 0.000000001d);
+		assertEquals(Double.NaN, range.getUpperBound(), 0.000000001d);
+	}
+	
+	@Test
+	public void testCombineIgnoringNaN_whenIntersect() {
+		range1 = new Range(0,5);
+		range2 = new Range(-1, 10);
+		range = new Range(-1, 10);
+		assertEquals(range, Range.combineIgnoringNaN(range1, range2));
+		assertEquals(0, range1.getLowerBound(), 0.000000001d);
+		assertEquals(5, range1.getUpperBound(), 0.000000001d);
+		assertEquals(-1, range2.getLowerBound(), 0.000000001d);
+		assertEquals(10, range2.getUpperBound(), 0.000000001d);
+		assertEquals(-1, range.getLowerBound(), 0.000000001d);
+		assertEquals(10, range.getUpperBound(), 0.000000001d);
+	}
+	@Test
+	public void testCombineIgnoringNaN_whenNoIntersect() {
+		range1 = new Range(0,5);
+		range2 = new Range(7, 10);
+		range = new Range(0, 10);
+		assertEquals(range, Range.combineIgnoringNaN(range1, range2));
+		assertEquals(0, range1.getLowerBound(), 0.000000001d);
+		assertEquals(5, range1.getUpperBound(), 0.000000001d);
+		assertEquals(7, range2.getLowerBound(), 0.000000001d);
+		assertEquals(10, range2.getUpperBound(), 0.000000001d);
+		assertEquals(0, range.getLowerBound(), 0.000000001d);
+		assertEquals(10, range.getUpperBound(), 0.000000001d);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testExpandWhenRangeParamNull() {
+		Range.expand(null, 0, 0);
+	}
+	
+	@Test
+	public void testExpandLowerLessThanUpper () {
+		range = new Range(-1,1);
+		range1 = Range.expand(range, 0.50, 0.50);
+		assertEquals(-2, range1.getLowerBound(), 0.000000001d);
+		assertEquals(2, range1.getUpperBound(), 0.000000001d);
+		assertEquals(-1, range.getLowerBound(), 0.000000001d);
+		assertEquals(1, range.getUpperBound(), 0.000000001d);
+	}
+	@Test
+	public void testExpandWhenInputLengthIsZero() {
+		range = new Range(0,0);
+		range1 = Range.expand(range, 2, 3);
+		assertEquals(0, range1.getLowerBound(), 0.000000001d);
+		assertEquals(0, range1.getUpperBound(), 0.000000001d);
+		assertEquals(0, range.getLowerBound(), 0.000000001d);
+		assertEquals(0, range.getUpperBound(), 0.000000001d);
+
+	}
+	@Test
+	public void testExpandNewRangeLowerEqualToUpper1() {
+		range = new Range(-1,1);
+		range1 = Range.expand(range, -0.50, -0.50);
+		assertEquals(0, range1.getLowerBound(), 0.000000001d);
+		assertEquals(0, range1.getUpperBound(), 0.000000001d);
+		assertEquals(-1, range.getLowerBound(), 0.000000001d);
+		assertEquals(1, range.getUpperBound(), 0.000000001d);
+	}
+	@Test public void testExpandNewRangeLowerEqualToUpper2() {
+		range = new Range(-1,1);
+		range1 = Range.expand(range, -1, 0.50);
+		assertEquals(1, range1.getLowerBound(), 0.000000001d);
+		assertEquals(2, range1.getUpperBound(), 0.000000001d);
+		assertEquals(-1, range.getLowerBound(), 0.000000001d);
+		assertEquals(1, range.getUpperBound(), 0.000000001d);
+	}
+	@Test
+	public void testExpandNewRangeLowerGreaterThanUpper() {
+		range = new Range(-1,1);
+		range1 = Range.expand(range, -2, 0);
+		assertEquals(2, range1.getLowerBound(), 0.000000001d);
+		assertEquals(2, range1.getUpperBound(), 0.000000001d);
+		assertEquals(-1, range.getLowerBound(), 0.000000001d);
+		assertEquals(1, range.getUpperBound(), 0.000000001d);
+	}
+	
+	// -------------END new a4 test cases------------------
 	
 	
 	
