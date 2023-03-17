@@ -55,6 +55,10 @@ public class calculateRowForTwoValuesTest extends DataUtilities {
 	     assertEquals(16.0, result, .000000001d);
 	     double result2 = DataUtilities.calculateRowTotal(values1, 0);
 	     assertEquals(0.0, result2, .000000001d);
-	     // tear-down: NONE in this test method
+	 }
+	 
+	 @Test(expected = IllegalArgumentException.class)
+	 public void calculateRowForTwoValuesNullVal() {
+	    	DataUtilities.calculateRowTotal(null, 0);
 	 }
 }

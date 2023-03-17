@@ -14,12 +14,19 @@ import org.junit.Test;
 public class getCumulativePercentagesTest extends DataUtilities {
 	
     DefaultKeyedValues testValues = new DefaultKeyedValues();
+    DefaultKeyedValues testValuesWithNull = new DefaultKeyedValues();
+
 	@Before
 	//Setup all the keyed values that will be fed into the function being tested
 	public void setUp() {
 		testValues.setValue("0", 5.0);
 		testValues.setValue("1", 9.0);
 		testValues.setValue("2", 2.0);
+		
+		testValuesWithNull.setValue("0", null);
+		testValuesWithNull.setValue("1", 1.0);
+		testValuesWithNull.setValue("2", null);
+		testValuesWithNull.setValue("3", 3.0);
 
 	}
 
@@ -39,4 +46,27 @@ public class getCumulativePercentagesTest extends DataUtilities {
 	    
 	     // tear-down: NONE in this test method
 	 }
+	 @Test(expected = IllegalArgumentException.class)
+	 public void getCumulativePercentagesNullParam() {
+	     // setup
+	     
+	     // exercise
+		 //Usage of the function with values stated above and using only column zero
+		 
+		 DataUtilities.getCumulativePercentages(null);
+	    	 
+	    	 
+	     
+	     // tear-down: NONE in this test method
+	 }
+	 
+	 @Test
+	 public void getCumulativePercentageWithNullVal() {
+		 KeyedValues results =  DataUtilities.getCumulativePercentages(testValuesWithNull);
+		 assertEquals(0.0, results.getValue(0));
+		 assertEquals(0.25, results.getValue(1));
+		 assertEquals(0.25, results.getValue(2));
+		 assertEquals(1.0, results.getValue(3));
+	 }
+	 
 }

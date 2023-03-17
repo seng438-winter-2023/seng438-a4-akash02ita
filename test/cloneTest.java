@@ -13,5 +13,17 @@ public class cloneTest  extends DataUtilities{
 		double[][] checkClone = DataUtilities.clone(realArr);
 		assertArrayEquals(realArr, checkClone);
 	}
-
+	
+	/* below are new test cases added for a4 to improve mutation coverage */
+	@Test(expected = IllegalArgumentException.class)
+	public void testNullParam() {
+		DataUtilities.clone(null);
+	}
+	
+	@Test
+	public void testArrWithNullRows() {
+		double[][] realArr = new double[][] {null, {2.2, 2.3}, null};
+		double[][] checkClone = DataUtilities.clone(realArr);
+		assertArrayEquals(realArr, checkClone);
+	}
 }

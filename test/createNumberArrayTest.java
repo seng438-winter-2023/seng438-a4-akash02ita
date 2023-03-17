@@ -38,4 +38,8 @@ public class createNumberArrayTest extends DataUtilities {
 	    assertArrayEquals(realVals, result);
 	     // tear-down: NONE in this test method
 	 }
+	 @Test(expected = IllegalArgumentException.class)
+	 public void testNullVal() {
+		 Number result[] = DataUtilities.createNumberArray(null);
+	 }
 }

@@ -47,4 +47,17 @@ public class createNumberArray2DTest extends DataUtilities {
 	    assertArrayEquals(realVals, result);
 	     // tear-down: NONE in this test method
 	 }
+	 @Test(expected = IllegalArgumentException.class)
+	 public void create2DNumberArrayNullVal() {
+	     // setup
+	     
+	     // exercise
+		 //Usage of the function with values stated above and using only column zero
+		 
+		 Number result[][] = DataUtilities.createNumberArray2D(null);
+	    	 
+	    	 
+	     
+	     // tear-down: NONE in this test method
+	 }
 }

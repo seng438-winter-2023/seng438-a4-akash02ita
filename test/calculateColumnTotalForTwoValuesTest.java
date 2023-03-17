@@ -29,9 +29,6 @@ public class calculateColumnTotalForTwoValuesTest extends DataUtilities {
 
 	 @Test
 	 public void calculateColumnTotalForTwoValues() {
-	     // setup
-	     
-	     // exercise
 		 //Usage of the function with values stated above and using only column zero
 		 try {
 	     double result = DataUtilities.calculateColumnTotal(values, 0);
@@ -41,7 +38,15 @@ public class calculateColumnTotalForTwoValuesTest extends DataUtilities {
 		 }catch(Exception e) {
 			 System.out.println("calculateColumnTotal with no valid row array failed");
 		 }
-	     
-	     // tear-down: NONE in this test method
 	 }
+	 
+	 /* below a4 new test cases to improve mutation coverage */
+	 @Test(expected = IllegalArgumentException.class)
+	 public void calculateColumnTotalForTwoValuesNullParam() {
+	     DataUtilities.calculateColumnTotal(null, 0);
+	 }
+	 
+	 
+	 
+	 
 }
