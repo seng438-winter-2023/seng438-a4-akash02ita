@@ -787,6 +787,201 @@ public class RangeTest {
 		assertEquals(1, range.getUpperBound(), 0.000000001d);
 	}
 	
+	@Test(expected = IllegalArgumentException.class)
+	public void scaleNullParam() {
+		Range.scale(null, 0);
+	}
+	@Test
+	public void scaleLarge() {
+		range = new Range(1,1);
+		Range scaledRange = Range.scale(range, 10);
+		assertEquals(1,range.getLowerBound(), 0.000000001d);
+		assertEquals(1,range.getUpperBound(), 0.000000001d);
+		assertEquals(10, scaledRange.getLowerBound(), 0.000000001d);
+		assertEquals(10, scaledRange.getUpperBound(), 0.000000001d);
+	}
+	@Test 
+	public void scaleSmall() {
+		range = new Range(1,1);
+		Range scaledRange = Range.scale(range, 0.5);
+		assertEquals(1,range.getLowerBound(), 0.000000001d);
+		assertEquals(1,range.getUpperBound(), 0.000000001d);
+		assertEquals(0.5, scaledRange.getLowerBound(), 0.000000001d);
+		assertEquals(0.5, scaledRange.getUpperBound(), 0.000000001d);
+	}
+	
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testShiftNullParam() {
+		Range.shift(null, 0);
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void testShiftNullParamWithNoZeroCrossing() {
+		Range.shift(null, 0, true);
+	}
+	
+	
+	// shift methods WITH ZEKO CROSSING ALLOWED. Try many possible ways
+	@Test
+	public void testShiftLeftWithZeroCrossing1() {
+		range = new Range(1,1);
+		Range shiftedRange = Range.shift(range, -10, true);
+		assertEquals(1,range.getLowerBound(), 0.000000001d);
+		assertEquals(1,range.getUpperBound(), 0.000000001d);
+		assertEquals(-9, shiftedRange.getLowerBound(), 0.000000001d);
+		assertEquals(-9, shiftedRange.getUpperBound(), 0.000000001d);
+	}
+	@Test
+	public void testShiftLeftWithZeroCrossing2() {
+		range = new Range(-1,1);
+		Range shiftedRange = Range.shift(range, -10, true);
+		assertEquals(-1,range.getLowerBound(), 0.000000001d);
+		assertEquals(1,range.getUpperBound(), 0.000000001d);
+		assertEquals(-11, shiftedRange.getLowerBound(), 0.000000001d);
+		assertEquals(-9, shiftedRange.getUpperBound(), 0.000000001d);
+	}
+	@Test
+	public void testShiftLeftWithZeroCrossing3() {
+		range = new Range(-1,-1);
+		Range shiftedRange = Range.shift(range, -10, true);
+		assertEquals(-1,range.getLowerBound(), 0.000000001d);
+		assertEquals(-1,range.getUpperBound(), 0.000000001d);
+		assertEquals(-11, shiftedRange.getLowerBound(), 0.000000001d);
+		assertEquals(-11, shiftedRange.getUpperBound(), 0.000000001d);
+	}
+	@Test
+	public void testShiftLeftWithZeroCrossingAtZero() {
+		range = new Range(0,0);
+		Range shiftedRange = Range.shift(range, -1, true);
+		assertEquals(0,range.getLowerBound(), 0.000000001d);
+		assertEquals(0,range.getUpperBound(), 0.000000001d);
+		assertEquals(-1, shiftedRange.getLowerBound(), 0.000000001d);
+		assertEquals(-1, shiftedRange.getUpperBound(), 0.000000001d);
+	}
+	
+	
+	
+	
+	
+	@Test
+	public void testShiftRightWithZeroCrossing1() {
+		range = new Range(1,1);
+		Range shiftedRange = Range.shift(range, 10, true);
+		assertEquals(1,range.getLowerBound(), 0.000000001d);
+		assertEquals(1,range.getUpperBound(), 0.000000001d);
+		assertEquals(11, shiftedRange.getLowerBound(), 0.000000001d);
+		assertEquals(11, shiftedRange.getUpperBound(), 0.000000001d);
+	}
+	@Test
+	public void testShiftRightWithZeroCrossing2() {
+		range = new Range(-1,1);
+		Range shiftedRange = Range.shift(range, 10, true);
+		assertEquals(-1,range.getLowerBound(), 0.000000001d);
+		assertEquals(1,range.getUpperBound(), 0.000000001d);
+		assertEquals(9, shiftedRange.getLowerBound(), 0.000000001d);
+		assertEquals(11, shiftedRange.getUpperBound(), 0.000000001d);
+	}
+	@Test
+	public void testShiftRightWithZeroCrossing3() {
+		range = new Range(-1,-1);
+		Range shiftedRange = Range.shift(range, 10, true);
+		assertEquals(-1,range.getLowerBound(), 0.000000001d);
+		assertEquals(-1,range.getUpperBound(), 0.000000001d);
+		assertEquals(9, shiftedRange.getLowerBound(), 0.000000001d);
+		assertEquals(9, shiftedRange.getUpperBound(), 0.000000001d);
+	}
+	@Test
+	public void testShiftRightWithZeroCrossingAtZero() {
+		range = new Range(0,0);
+		Range shiftedRange = Range.shift(range, 1, true);
+		assertEquals(0,range.getLowerBound(), 0.000000001d);
+		assertEquals(0,range.getUpperBound(), 0.000000001d);
+		assertEquals(1, shiftedRange.getLowerBound(), 0.000000001d);
+		assertEquals(1, shiftedRange.getUpperBound(), 0.000000001d);
+	}
+	
+	
+	// shift methods WITH **NO** ZEKO CROSSING ALLOWED. Try many possible ways
+		@Test
+		public void testShiftLeftWithNoZeroCrossing1() {
+			range = new Range(1,1);
+			Range shiftedRange = Range.shift(range, -10);
+			assertEquals(1,range.getLowerBound(), 0.000000001d);
+			assertEquals(1,range.getUpperBound(), 0.000000001d);
+			assertEquals(0, shiftedRange.getLowerBound(), 0.000000001d);
+			assertEquals(0, shiftedRange.getUpperBound(), 0.000000001d);
+		}
+		@Test
+		public void testShiftLeftWithNoZeroCrossing2() {
+			range = new Range(-1,1);
+			Range shiftedRange = Range.shift(range, -10);
+			assertEquals(-1,range.getLowerBound(), 0.000000001d);
+			assertEquals(1,range.getUpperBound(), 0.000000001d);
+			assertEquals(-11, shiftedRange.getLowerBound(), 0.000000001d);
+			assertEquals(0, shiftedRange.getUpperBound(), 0.000000001d);
+		}
+		@Test
+		public void testShiftLeftWithNoZeroCrossing3() {
+			range = new Range(-1,-1);
+			Range shiftedRange = Range.shift(range, -10);
+			assertEquals(-1,range.getLowerBound(), 0.000000001d);
+			assertEquals(-1,range.getUpperBound(), 0.000000001d);
+			assertEquals(-11, shiftedRange.getLowerBound(), 0.000000001d);
+			assertEquals(-11, shiftedRange.getUpperBound(), 0.000000001d);
+		}
+		@Test
+		public void testShiftLeftWithNoZeroCrossingAtZero() {
+			range = new Range(0,0);
+			Range shiftedRange = Range.shift(range, -1);
+			assertEquals(0,range.getLowerBound(), 0.000000001d);
+			assertEquals(0,range.getUpperBound(), 0.000000001d);
+			assertEquals(-1, shiftedRange.getLowerBound(), 0.000000001d);
+			assertEquals(-1, shiftedRange.getUpperBound(), 0.000000001d);
+		}
+		
+		
+		
+		
+		
+		@Test
+		public void testShiftRightWithNoZeroCrossing1() {
+			range = new Range(1,1);
+			Range shiftedRange = Range.shift(range, 10);
+			assertEquals(1,range.getLowerBound(), 0.000000001d);
+			assertEquals(1,range.getUpperBound(), 0.000000001d);
+			assertEquals(11, shiftedRange.getLowerBound(), 0.000000001d);
+			assertEquals(11, shiftedRange.getUpperBound(), 0.000000001d);
+		}
+		@Test
+		public void testShiftRightWithNoZeroCrossing2() {
+			range = new Range(-1,1);
+			Range shiftedRange = Range.shift(range, 10);
+			assertEquals(-1,range.getLowerBound(), 0.000000001d);
+			assertEquals(1,range.getUpperBound(), 0.000000001d);
+			assertEquals(0, shiftedRange.getLowerBound(), 0.000000001d);
+			assertEquals(11, shiftedRange.getUpperBound(), 0.000000001d);
+		}
+		@Test
+		public void testShiftRightWithNoZeroCrossing3() {
+			range = new Range(-1,-1);
+			Range shiftedRange = Range.shift(range, 10);
+			assertEquals(-1,range.getLowerBound(), 0.000000001d);
+			assertEquals(-1,range.getUpperBound(), 0.000000001d);
+			assertEquals(0, shiftedRange.getLowerBound(), 0.000000001d);
+			assertEquals(0, shiftedRange.getUpperBound(), 0.000000001d);
+		}
+		@Test
+		public void testShiftRightWithNoZeroCrossingAtZero() {
+			range = new Range(0,0);
+			Range shiftedRange = Range.shift(range, 1);
+			assertEquals(0,range.getLowerBound(), 0.000000001d);
+			assertEquals(0,range.getUpperBound(), 0.000000001d);
+			assertEquals(1, shiftedRange.getLowerBound(), 0.000000001d);
+			assertEquals(1, shiftedRange.getUpperBound(), 0.000000001d);
+		}
+	
+	
+	
 	// -------------END new a4 test cases------------------
 	
 	
