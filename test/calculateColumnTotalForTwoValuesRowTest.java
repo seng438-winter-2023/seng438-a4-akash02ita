@@ -81,7 +81,7 @@ public class calculateColumnTotalForTwoValuesRowTest extends DataUtilities {
 
 		 
 	    	 int[] checkRow = new int[]{1};
-	    	 double result2 = DataUtilities.calculateColumnTotal(null, 0, checkRow);
+	    	 DataUtilities.calculateColumnTotal(null, 0, checkRow);
 
 	 }
 	 @Test

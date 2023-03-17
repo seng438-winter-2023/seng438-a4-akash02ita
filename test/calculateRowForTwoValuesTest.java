@@ -14,6 +14,8 @@ public class calculateRowForTwoValuesTest extends DataUtilities {
     final Values2D values = mockingContext.mock(Values2D.class);
     Mockery mockingContext1 = new Mockery();
     final Values2D values1 = mockingContext1.mock(Values2D.class);
+	Mockery mockingContext2 = new Mockery();
+    final Values2D valuesNull = mockingContext2.mock(Values2D.class);
 	@Before
 	public void setUp() {
 		//There will be two columns and first value of column 1 is 10.5 and 
@@ -42,6 +44,21 @@ public class calculateRowForTwoValuesTest extends DataUtilities {
 	             
 	         }
 	     });
+	     mockingContext2.checking((ExpectationBuilder) new Expectations() {
+	         {
+	             one(valuesNull).getColumnCount();
+	             will(returnValue(4));
+	             one(valuesNull).getValue(0, 0);
+	             will(returnValue(10.5));
+	             one(valuesNull).getValue(0, 1);
+	             will(returnValue(null));
+	             one(valuesNull).getValue(0, 2);
+	             will(returnValue(5.5));
+	             one(valuesNull).getValue(0, 3);
+	             will(returnValue(null));
+	             
+	         }
+	     });
 	}
 
 	 @Test
@@ -60,5 +77,11 @@ public class calculateRowForTwoValuesTest extends DataUtilities {
 	 @Test(expected = IllegalArgumentException.class)
 	 public void calculateRowForTwoValuesNullVal() {
 	    	DataUtilities.calculateRowTotal(null, 0);
+	 }
+	 
+	 @Test
+	 public void calculateRowForTwoValuesWithNullValues() {
+	    	 double result2 = DataUtilities.calculateRowTotal(valuesNull, 0);
+	    	 assertEquals(16, result2, .000000001d);
 	 }
 }

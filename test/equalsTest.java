@@ -31,6 +31,8 @@ public class equalsTest  extends DataUtilities{
 	public void testNullity() {
 		assertTrue(DataUtilities.equal(null, null));
 	}
+	
+	@Test
 	public void testLength() {
 		double[][] realEmpty = new double[][] {};
 		double[][] realArr2 = new double[][] {{1.2, 1.3}, {2.2, 2.3}};
@@ -38,6 +40,7 @@ public class equalsTest  extends DataUtilities{
 		assertFalse(DataUtilities.equal(realArr2, realEmpty));
 	}
 	
+	@Test
 	public void testEqual() {
 		double[][] realArr1 = new double[][] {{1.2, 1.3}, {2.2, 2.3}};
 		double[][] realArr2 = new double[][] {{1.9, 1.3}, {2.2, 2.3}};
