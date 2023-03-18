@@ -13,6 +13,9 @@ Note, how we needed to fix a few things throught the steps, to achieve 100% gree
 ## Figure 2.x
 These figures describe the PIT mutation testing performed on the **sample tests** provided and the test is run only in `org.jfree.data` package since `Range.java` and `DataUtilities.java` are inside that package.
 
-You may also visit the path for [mutation_test_results/before](../mutation_test_results/before/) to see a more detailed output of the Console and Mutation summary. Unfortunately, in eclipse we were not able to show the PIT mutations part as there was no way to find the source path. So, only a brief screenshot in figures [2.2.0](2.2.0.png) and [2.2.1](2.2.1.png) was taken, instead of expanding the whole thing and taking many screenshots.
+You may also visit the path for [mutation_test_results/before](../mutation_test_results/before/) to see a more detailed output of the Console and Mutation summary.
 
 
+## Figure 3.x
+These figure describe the result summary of the PIT mutation test after adding new or improving existing test cases. The coverage for `Range.java` is a significant improvement thanks to new added methods. Whereas the `DataUtilities.java` mainly involved adding new test case of existing methods to make the test suite more robust and effective against mutants.
+You may also the path for [mutation_test_results/after](../mutation_test_results/after/) to see a more detailed ouptut of the Console and Mutation summary.
