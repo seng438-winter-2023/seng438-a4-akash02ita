@@ -93,6 +93,61 @@ The mutation replaces `if (!(this.lower == range.lower))` to `if (true)`. This c
 <img src="figs/3.1.png" width=auto height=200>
 <img src="figs/3.2.png" width=auto height=200>
 
+## New test cases for Range.java
+- testConstructorRangeValues()
+- testIntersectWhenInputContainsRange()
+- testCombineIgnoringNaN_null()
+- testCombineIgnoringNaN_whenIntersect()
+- testCombineIgnoringNaN_whenNoIntersect()
+- testExpandWhenRangeParamNull()
+- testExpandLowerLessThanUpper()
+- testExpandWhenInputLengthIsZero()
+- testExpandNewRangeLowerEqualToUpper1()
+- testExpandNewRangeLowerEqualToUpper2()
+- testExpandNewRangeLowerGreaterThanUpper()
+- scaleNullParam()
+- scaleLarge()
+- scaleSmall()
+- testShiftNullParam()
+- testShiftNullParamWithNoZeroCrossing()
+- testShiftLeftWithZeroCrossing1()
+- testShiftLeftWithZeroCrossing2()
+- testShiftLeftWithZeroCrossing3()
+- testShiftLeftWithZeroCrossingAtZero()
+- testShiftRightWithZeroCrossing1()
+- testShiftRightWithZeroCrossing2()
+- testShiftRightWithZeroCrossing3()
+- testShiftRightWithZeroCrossingAtZero()
+- testShiftLeftWithNoZeroCrossing1()
+- testShiftLeftWithNoZeroCrossing2()
+- testShiftLeftWithNoZeroCrossing3()
+- testShiftLeftWithNoZeroCrossingAtZero()
+- testShiftRightWithNoZeroCrossing1()
+- testShiftRightWithNoZeroCrossing2()
+- testShiftRightWithNoZeroCrossing3()
+- testShiftRightWithNoZeroCrossingAtZero()
+
+## New test cases for DataUtilities.java
+### calculate column and row total
+- calculateColumnTotalForRowTwoValueCheckRow()
+- calculateRowForOneColumnValueRowEqualRowCount()
+- calculateRowForOneColumnValueWithNullValues()
+- calculateRowForOneColumnValuesNullVal
+- calculateRowForOneColumnValueWithNullValues
+- calculateRowForTwoValuesWithNullValues()
+- calculateRowForTwoValuesWithZeroColumns()
+### array
+- testArrWithNullRows()
+- create2DNumberArrayNullVal
+### clone test
+- testNullVal
+### equal test
+- testNullity()
+- testLength()
+- testEqual()
+### cumulative percentages
+- getCumulativePercentagesNullParam()
+- getCumulativePercentageWithNullVal()
 
 # Analysis drawn on the effectiveness of each of the test classes
 ## `Range.java`
@@ -121,8 +176,10 @@ As it can be seen the behaviour of both lines is the same!
 So, this implies that even if our test cases method appropriately test the input and outputs, such mutants cannot be kiled since the test cases expect the code to behave that logical manner, regardless of the different possible ways of doing it. This is also why equivalent mutants will survive and later impact the accuracy of method coverage being lower than the actual true method coverage.
 
 # A discussion of what could have been done to improve the mutation score of the test suites
-
+For the `Range` class adding test cases for uncovered methods would have improved the mutation score. This effect was significant. However, to minimize survived mutants the test cases for same method needed to handle more edge cases so that mroe mutants get killed. We believe there is a larget room and potential to improve mutation score as edge cases test can still be added to exactly kill more  mutants.
+`DataUtilites` class already had a higher mutation score and enhancing test cases to kill more mutants allowed to achieve amutation score already above 90%. Despite many attempts increasing mutation score was very tough. 
 # Why do we need mutation testing? Advantages and disadvantages of mutation testing
+
 
 # Explain your SELENUIM test case design process
 
